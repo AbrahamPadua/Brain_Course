@@ -1,0 +1,48 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@mixin absPos() {
+  position: absolute;
+}
+
+@mixin pos($pos: absolute, $t: 0, $r: 0, $b: 0, $l: 0, $x: -50%, $y: -50%) {
+  position: $pos;
+
+  @if $t != 0 {
+    top: $t;
+  }
+  @if $r != 0 {
+    right: $r;
+  }
+  @if $b != 0 {
+    bottom: $b;
+  }
+  @if $l != 0 {
+    left: $l;
+  }
+
+  transform: translate($x, $y);
+}
+
+@mixin absCenter {
+  @include pos($t: 50vh, $l: 50vw);
+}
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin wrapperBg {
+  @include pos($pos: fixed, $t: 50vh, $l: 50vw);
+  @include flex-center;
+}

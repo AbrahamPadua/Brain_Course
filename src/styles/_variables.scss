@@ -1,0 +1,31 @@
+@font-face {
+  font-family: perpetua;
+  src: url("..//Fonts/Perpetua/Perpetua.TTF");
+}
+
+@font-face {
+  font-family: "Bookman";
+  src: url("../Fonts/bookman/Bookman\ Bold.ttf");
+}
+
+@font-face {
+  font-family: "century gothic";
+  src: url("../Fonts/Century\ Gothic/GOTHIC.TTF");
+}
+
+@font-face {
+  font-family: "gill sans";
+  src: url("../Fonts/Gill\ Sans/GIL_____.TTF");
+}
+
+$primary: #024;
+$videoY: -70px;
+
+// FONTS
+$perpetua: "perpetua", "serif";
+$arialRound: "arial rounded mt", "sans-serif";
+$centuryGothic: "century gothic", $arialRound;
+$bookman: "bookman", $centuryGothic;
+$gillSans: "gill sans", $centuryGothic;
+
+$iphoneX: map(y=100px, x=200px);

@@ -1,0 +1,108 @@
+.landing-page {
+  // POSITIONING
+  @include flex-center;
+  position: relative;
+  // DIMENSIONS aND SPACES
+  height: 112vh;
+  width: 100%;
+  overflow: hidden;
+  // STYLING
+  border-radius: 0 0 100px 100px;
+  z-index: 1;
+
+  // filter
+  .color-overlay {
+    @include pos($t: -$videoY - 9px, $l: 0, $x: 0, $y: 0);
+    @include square(100%);
+    // STYLING
+    background: #0d172b;
+    opacity: 0.5;
+  }
+
+  .jumbotron {
+    // SPACING
+    @include flex-center;
+    justify-content: space-evenly;
+    flex-flow: column nowrap;
+    margin-bottom: 100px;
+    // STYLING
+    background-color: transparent !important;
+    color: white;
+    cursor: default;
+    z-index: 2;
+
+    h1 {
+      // SPACES
+      padding-top: 0 20px;
+      margin: 5px 15px;
+      // STYLING
+      background: transparent;
+      font-family: $perpetua;
+      font-size: 6rem;
+
+      span {
+        color: #fc5185;
+      }
+    }
+
+    p {
+      // DIMENSION AND SPACES
+      width: 600px;
+      text-align: center;
+      // STYLING
+      color: #dedede;
+      font-family: $centuryGothic;
+      font-size: 1.5rem;
+    }
+
+    a {
+      // SPACING
+      padding: 5px 20px;
+      margin-top: 40px;
+      // STYLING
+      background: #00262b41;
+      color: #fe7aab;
+      font-family: $arialRound;
+      text-decoration: none;
+      font-size: 1.7rem;
+      border: 1px solid #fc5185;
+      border-radius: 30px;
+
+      &:hover {
+        background: #00262bb6;
+      }
+    }
+
+    svg {
+      // POSITIONING
+      position: relative;
+      top: 20vh;
+      // DIMENSIONS AND SPACES
+      @include square(50px);
+      @include flex-center;
+      // STYLING
+      border: 1px solid rgba(255, 255, 255, 0.295);
+      border-radius: 50%;
+      color: rgba(255, 255, 255, 0.295);
+      font-size: 2.5rem;
+
+      &:hover {
+        border: 1px solid white;
+        color: white;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .video-container {
+    // POSITIONING
+    @include pos($t: $videoY, $l: 0, $x: 0, $y: 0);
+    // DIMENSIONS
+    height: 110%;
+    width: auto;
+
+    video {
+      height: 110%;
+    }
+  }
+}

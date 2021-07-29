@@ -1,0 +1,81 @@
+@import "./header";
+
+.home-content {
+  height: 100vh;
+  width: 100%;
+
+  &#home-second {
+    @include flex-center;
+    top: -6vw;
+    padding: 4vw;
+    padding-top: 6vw;
+    position: relative;
+    border-radius: 0 0 100px 100px;
+    background: linear-gradient(
+      to bottom,
+      #364f6b,
+      #617892,
+      #7c96b3,
+      #a5b7cc,
+      #c7d6e7,
+      #d2ddeb,
+      #edeff1,
+      #ffffff
+    );
+
+    .texts {
+      flex-flow: column nowrap;
+      @include flex-center;
+
+      p {
+        font-size: 1.5rem;
+      }
+    }
+
+    img {
+      transform: scale(0.7);
+    }
+  }
+
+  &#home-third {
+    @include flex-center;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    background: linear-gradient(to bottom, #233446, #293d52, #2e445c, #334c66);
+
+    h1 {
+      color: white;
+      font-family: $perpetua;
+      font-size: 5rem;
+    }
+
+    #instructors {
+      @include flex-center;
+      flex-flow: row wrap;
+      justify-content: space-evenly;
+
+      .instructor {
+        @include flex-center;
+        flex-flow: column nowrap;
+        width: 20%;
+        font-family: $centuryGothic;
+        color: white;
+
+        h3 {
+          margin: 5px;
+          margin-top: 25px;
+        }
+
+        p {
+          color: rgba(255, 255, 255, 0.705);
+        }
+
+        img {
+          width: 40%;
+          height: 40%;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

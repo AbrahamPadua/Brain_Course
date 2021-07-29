@@ -1,0 +1,32 @@
+#accountBody {
+  padding-top: 6vw;
+  @include flex-center;
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+  }
+
+  #enrollments {
+    margin-left: 10vw;
+    margin-right: 10vw;
+    width: 80%;
+
+    tr {
+      @include flex-center;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      th,
+      td {
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+      }
+
+      td {
+      }
+    }
+  }
+}

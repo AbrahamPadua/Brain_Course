@@ -1,0 +1,122 @@
+.show-form {
+  @include wrapperBg;
+  width: auto;
+  height: auto;
+  padding: 2% 60px 0%;
+  overflow: hidden;
+  background: #364f6bda;
+  // box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
+  //   5px 5px 15px 5px rgba(0, 0, 0, 0);
+  border-radius: 10%;
+  opacity: 1;
+  z-index: 1000;
+  transition: transform 1s, opacity 1s;
+
+  @if opacity == 0 {
+    display: none;
+  } @else {
+    display: flex;
+  }
+
+  .form-title {
+    align-self: flex-start;
+    @include flex-center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 5px;
+
+    h2 {
+      font-size: 2.5rem;
+      color: white;
+      transition: transform 0.5s linear;
+    }
+
+    i {
+      font-size: 30px;
+      color: #d3345b;
+      cursor: pointer;
+    }
+  }
+
+  form {
+    .inptPass {
+      display: inline-block;
+      width: 100%;
+
+      &::after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+      }
+
+      input,
+      i {
+        float: left;
+        margin: 0 -10px 0 -10px;
+        margin-bottom: 0px;
+        position: relative;
+        left: 10px;
+      }
+
+      .fa-eye-slash {
+        color: #fff;
+        margin-top: 10px;
+        position: relative;
+        left: 0px;
+      }
+    }
+
+    button {
+      width: 100%;
+      margin-top: 0px !important;
+      margin-bottom: 5px !important;
+    }
+
+    p {
+      color: rgb(201, 195, 195);
+      a {
+        color: #d3345b !important;
+      }
+    }
+  }
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(-20px);
+  // top: -100px !important;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.8s cubic-bezier(0.47, 0.17, 0, 0.73);
+}
+
+.form-overlay {
+  @include pos($pos: fixed, $t: 0vh, $l: 0vw, $x: 0, $y: 0);
+  @include flex-center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  background: rgba(26, 34, 51, 0.425);
+
+  &:hover {
+    cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABGUlEQVRYR+1WWw7CMAxzEQghLsAJuP95uAH/CCHxCNrUVmXt0jQr6z62j2matthxnDQGjS/TGB8rgcUqYAj4dP4wwAnAtYJXtgQ8bcwdgJd9jkMTQOHbCiQ8uItr+tzsLZGdVyD4QatECpxXwILWIMGCcwr4xJ0XFErsCXgMSukzD+Jl7aVR4kDAPQcuUUCjhBi8hED/raAcRwJuksxLSvATjyFRDF6qAFeOMwGXksy1CoyS0IBrFXBYGwLewx4yQNRqXJ9pD6PIkHMqkOqG2TzAteLfu6DpHJCAOxsUKSExYQm4IyEexzkCGnBHYvJpOAXckVDvAzXARSSSJVjCTthtpf1iWmEhjUZ3OK5zJsyuS1M/WAk0V+ALoiZ9IV3jnzQAAAAASUVORK5CYII=)
+        0 0,
+      default;
+  }
+}
+
+@media (max-width: 990px) {
+  .show-form {
+    .form-title {
+      h2 {
+        transform: rotate(90deg) translateY(90px) translateX(50%);
+      }
+    }
+  }
+}

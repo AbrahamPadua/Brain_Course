@@ -1,0 +1,167 @@
+#main-nav {
+  flex-flow: row nowrap;
+  &.transparent {
+    background: transparent;
+  }
+  transition: background 0.2s linear;
+  padding: 12px 20px;
+
+  > a > img {
+    width: 120px;
+    height: auto;
+  }
+
+  #search-wrapper {
+    #search-bar {
+      @include flex-center;
+      margin-top: 10px;
+      width: 600px;
+      height: 40px;
+
+      #search-img {
+        @include flex-center;
+        border: 1px solid black;
+        border-right: 0;
+        background: white;
+        border-radius: 7px 0 0 7px;
+        height: 100%;
+        width: 10%;
+
+        img {
+          width: 60%;
+          height: auto;
+        }
+      }
+
+      input {
+        @include flex-center;
+        padding-left: 10px;
+        width: 100%;
+        background: white;
+        height: 100%;
+        border-radius: 0 7px 7px 0;
+
+        :target {
+          border: none;
+        }
+      }
+
+      input[type="search"]::-webkit-search-decoration,
+      input[type="search"]::-webkit-search-cancel-button,
+      input[type="search"]::-webkit-search-results-button,
+      input[type="search"]::-webkit-search-results-decoration {
+        -webkit-appearance: none;
+      }
+
+      .fa-eraser {
+        position: relative;
+        right: 35px;
+        font-size: 1.3rem;
+        cursor: pointer;
+      }
+    }
+
+    #results {
+      width: 580px;
+      position: absolute;
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: flex-end;
+
+      .result {
+        @include flex-center;
+        justify-content: flex-start;
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.63);
+        border-radius: 7px;
+        color: black;
+        width: 90%;
+        padding: 3px;
+        cursor: pointer;
+
+        .resultImg {
+          width: 35px;
+          height: 35px;
+          background: black;
+          border-radius: 7px;
+        }
+
+        h4 {
+          margin: 0 5px;
+          font-family: $perpetua;
+        }
+
+        &:hover {
+          background: rgb(226, 226, 226);
+        }
+      }
+
+      .result:not(:first-child) {
+        border-top: 1px solid rgb(34, 34, 34);
+      }
+    }
+
+    /*
+
+          MEDIA QUERIES FOR NAV
+
+    */
+
+    @include media("<=desktop") {
+      #search-bar {
+        width: 500px;
+      }
+      #results {
+        width: 480px;
+      }
+    }
+
+    @include media("<=900px") {
+      #search-bar {
+        display: none;
+      }
+    }
+  }
+
+  #zuitterNav {
+    @include flex-center;
+    margin-left: auto;
+  }
+
+  @include media("<=900px") {
+    background: #024 !important;
+  }
+}
+
+.nav-wrapper {
+  @include flex-center;
+  margin-top: 13px;
+  color: rgb(235, 235, 235);
+  font-size: 30px * 0.2 * 3;
+  width: 135px * 0.2 * 3;
+  height: 60px * 0.2 * 3;
+  border-radius: 40px;
+}
+
+#login-wrapper {
+  background: #364f6b33;
+  border: 1px solid #364f6b;
+  margin-right: 10px;
+
+  &:hover {
+    background: #364f6b9d;
+  }
+}
+
+#register-wrapper {
+  background: #fc518438;
+  border: 1px solid #fc5185;
+
+  &:hover {
+    background: #fc5184c0;
+  }
+}
+
+body > div.swal2-container.swal2-center.swal2-backdrop-show > div {
+  z-index: 10000;
+}
