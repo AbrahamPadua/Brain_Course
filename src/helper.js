@@ -3,6 +3,11 @@ import Swal from "sweetalert2";
 
 export const API = "https://course-booking-server.herokuapp.com/api";
 
+export const handleInput = (e, state, set) => {
+  const { name, value } = e.target
+  set({ ...state, [name]: value })
+}
+
 export const fadeOut = (el) => {
   let op = 1;
   let v = 0.001;
@@ -31,5 +36,19 @@ export const getCourses = async () => {
     );
   }
 };
+
+export const showForm = () => {
+  const overlay = document.querySelector(".form-overlay")
+  const form = document.querySelector("#form")
+  overlay.style.display = "block";
+  form.classList.add("show-form");
+};
+
+export const closeForm = () => {
+  const overlay = document.querySelector(".form-overlay")
+  const form = document.querySelector("#form")
+  fadeOut(form)
+  fadeOut(overlay)
+}
 
 export const CoursesCtx = createContext();

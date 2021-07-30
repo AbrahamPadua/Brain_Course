@@ -80,11 +80,7 @@ const Result = ({ course }) => (
 );
 
 export const Item = ({ name, link }) => {
-  const showForm = () => {
-    const form = document.querySelector("#form");
-    form.classList.remove("hide");
-    form.classList.add("show-form");
-  };
+
 
   return (
     <NavItem onClick={showForm}>

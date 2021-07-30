@@ -1,4 +1,6 @@
+// FUNCTIONS
 import { useEffect, useState } from "react";
+import { CoursesCtx, getCourses, closeForm } from "./helper";
 // COMPONENTS
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home, Courses, Login, Register, Logout, Error, NavBar } from "./components";
@@ -6,7 +8,6 @@ import Canvas from "./components/Canvas";
 // STYLING
 import "./App.css";
 import "./styles/main.scss";
-import { CoursesCtx, getCourses } from "./helper";
 
 function App() {
   const [courses, setCourses] = useState([])
@@ -26,7 +27,7 @@ function App() {
           <Route component={Error} />
         </Switch>
         {/* FORMS */}
-        <div className="form-overlay"> </div>
+        <div className="form-overlay" onClick={closeForm}> </div>
         <div id="form">
           <Login />
           <Register />

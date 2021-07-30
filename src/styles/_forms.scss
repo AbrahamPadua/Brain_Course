@@ -8,14 +8,11 @@
   // box-shadow: inset -1px 3px 8px 5px #1f87ff, 2px 5px 16px 0px #0b325e,
   //   5px 5px 15px 5px rgba(0, 0, 0, 0);
   border-radius: 10%;
-  opacity: 1;
   z-index: 1000;
   transition: transform 1s, opacity 1s;
+  opacity: 1;
 
-  @if opacity == 0 {
-    display: none;
-  } @else {
-    display: flex;
+  &.hide {
   }
 
   .form-title {
@@ -85,9 +82,7 @@
 }
 
 .hidden {
-  opacity: 0;
-  transform: translateY(-20px);
-  // top: -100px !important;
+  transform: translate(-50%, -60%);
 }
 
 .show {
@@ -103,6 +98,7 @@
   height: 100vh;
   z-index: 10;
   background: rgba(26, 34, 51, 0.425);
+  display: none;
 
   &:hover {
     cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABGUlEQVRYR+1WWw7CMAxzEQghLsAJuP95uAH/CCHxCNrUVmXt0jQr6z62j2matthxnDQGjS/TGB8rgcUqYAj4dP4wwAnAtYJXtgQ8bcwdgJd9jkMTQOHbCiQ8uItr+tzsLZGdVyD4QatECpxXwILWIMGCcwr4xJ0XFErsCXgMSukzD+Jl7aVR4kDAPQcuUUCjhBi8hED/raAcRwJuksxLSvATjyFRDF6qAFeOMwGXksy1CoyS0IBrFXBYGwLewx4yQNRqXJ9pD6PIkHMqkOqG2TzAteLfu6DpHJCAOxsUKSExYQm4IyEexzkCGnBHYvJpOAXckVDvAzXARSSSJVjCTthtpf1iWmEhjUZ3OK5zJsyuS1M/WAk0V+ALoiZ9IV3jnzQAAAAASUVORK5CYII=)

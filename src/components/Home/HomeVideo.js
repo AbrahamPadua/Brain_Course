@@ -1,5 +1,3 @@
-import { Player } from "video-react"
-
 const HomeVideo = () => {
   return (
     <div className="video-container">

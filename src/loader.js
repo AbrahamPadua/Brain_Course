@@ -426,11 +426,11 @@ const loader = (canvas) => {
     }
   }
 
-  function distance(neuron1, neuron2) {
-    return Math.sqrt(
-      Math.pow(neuron1.x - neuron2.x, 2) + Math.pow(neuron1.y - neuron2.y, 2)
-    );
-  }
+  // function distance(neuron1, neuron2) {
+  //   return Math.sqrt(
+  //     Math.pow(neuron1.x - neuron2.x, 2) + Math.pow(neuron1.y - neuron2.y, 2)
+  //   );
+  // }
 
   function between(pos1, pos2, percentage) {
     return {

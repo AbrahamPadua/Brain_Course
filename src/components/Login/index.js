@@ -5,7 +5,7 @@ const Login = () => {
     <section id="login">
       <Title />
       <div className="">
-        <form action="" id="loginForm">
+        <form>
           <input
             type="email"
             name="userEmail"
