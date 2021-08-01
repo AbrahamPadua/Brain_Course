@@ -1,16 +1,17 @@
 // FUNCTIONS
 import { useEffect, useState } from "react";
-import { CoursesCtx, getCourses, closeForm } from "./helper";
+import { CoursesCtx, getCourses, UserCtx, FormCtx, closeForm } from "./helper";
 // COMPONENTS
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home, Courses, Login, Register, Logout, Error, NavBar } from "./components";
+import { Home, Courses, Login, Register, Logout, Error, NavBar, Footer } from "./components";
 import Canvas from "./components/Canvas";
 // STYLING
-import "./App.css";
 import "./styles/main.scss";
 
 function App() {
+  const [formType, setFormType] = useState("")
   const [courses, setCourses] = useState([])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     getCourses().then(data => setCourses(data))
@@ -18,23 +19,28 @@ function App() {
 
   return (
     <Router>
-      <CoursesCtx.Provider value={{ courses, setCourses }}>
-        {/* ROUTES */}
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/courses" component={Courses} />
-          <Route path="/logout" component={Logout} />
-          <Route component={Error} />
-        </Switch>
-        {/* FORMS */}
-        <div className="form-overlay" onClick={closeForm}> </div>
-        <div id="form">
-          <Login />
-          <Register />
-        </div>
-        {/* NAV */}
-        <NavBar />
-      </CoursesCtx.Provider>
+      <FormCtx.Provider value={{ formType, setFormType }} >
+        <CoursesCtx.Provider value={{ courses, setCourses }}>
+          <UserCtx.Provider value={{ user, setUser }}>
+            {/* ROUTES */}
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/courses" component={Courses} />
+              <Route path="/logout" component={Logout} />
+              <Route component={Error} />
+            </Switch>
+            {/* FOOTER */}
+            <Footer />
+            {/* FORMS */}
+            <div className="form-overlay" onClick={() => closeForm(formType)} />
+            <section className="form">
+              {formType === "login" ? <Login /> : <Register />}
+            </section>
+            {/* NAV */}
+            <NavBar />
+          </UserCtx.Provider>
+        </CoursesCtx.Provider>
+      </FormCtx.Provider>
       {/* LOADER */}
       <Canvas />
     </Router>

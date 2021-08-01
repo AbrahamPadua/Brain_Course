@@ -8,19 +8,19 @@ import { NavItem, NavLink } from "react-bootstrap";
 import Magnifier from "../../svgs/magnifier.svg";
 import { faEraser } from "@fortawesome/free-solid-svg-icons";
 // CTX
-import { CoursesCtx, getCourses } from "../../helper";
+import { CoursesCtx, FormCtx, getCourses, showForm } from "../../helper";
 
 export const SearchBar = () => {
   const { courses, setCourses } = useContext(CoursesCtx);
   const searchInput = useRef();
-  const [hideEraser, setHideEraser] = useState("hidden");
+  const [eraser, setEraser] = useState("");
   const [searchData, setSearchData] = useState([]);
 
   const search = ({ target: { value } }) => {
     if (value) {
       // GETTING COURSES
       if (!courses.length) {
-        getCourses().then((data) => setCourses(data));
+        getCourses().then((data) => setCourses(data ?? []));
         return;
       }
       // FILTERING COURSES USING QUERY
@@ -31,7 +31,7 @@ export const SearchBar = () => {
       });
       // SETTING DISPLAYED DATA
       setSearchData(results);
-      setHideEraser("");
+      setEraser("show");
     } else {
       erase();
     }
@@ -40,7 +40,7 @@ export const SearchBar = () => {
   const erase = () => {
     // RESETING INPUT
     setSearchData([]);
-    setHideEraser("hidden");
+    setEraser("hidden");
     searchInput.current.value = "";
   };
 
@@ -53,7 +53,7 @@ export const SearchBar = () => {
         <input type="search" name="search" id="search" placeholder="Search a Course" onInput={search} ref={searchInput} />
         <FontAwesomeIcon
           icon={faEraser}
-          className={hideEraser ?? ""}
+          className={eraser ?? ""}
           onClick={erase}
         />
       </div>
@@ -80,11 +80,18 @@ const Result = ({ course }) => (
 );
 
 export const Item = ({ name, link }) => {
+  const { setFormType } = useContext(FormCtx)
 
+  const formNav = (e) => {
+    // SHOWING FORM
+    e.preventDefault()
+    setFormType(link)
+    showForm()
+  }
 
   return (
-    <NavItem onClick={showForm}>
-      <NavLink href={`#${link}`}>
+    <NavItem onClick={formNav}>
+      <NavLink>
         <div className="nav-wrapper" id={`${link}-wrapper`}>
           {name}
         </div>

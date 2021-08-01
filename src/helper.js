@@ -1,12 +1,21 @@
 import { createContext } from "react";
 import Swal from "sweetalert2";
 
-export const API = "https://course-booking-server.herokuapp.com/api";
+export const API = process.env.REACT_APP_API + "/api";
+
+// CONTEXTS
+
+export const FormCtx = createContext();
+export const CoursesCtx = createContext();
+export const UserCtx = createContext();
+
+
+// FUNCTIONS
 
 export const handleInput = (e, state, set) => {
-  const { name, value } = e.target
-  set({ ...state, [name]: value })
-}
+  const { name, value } = e.target;
+  set({ ...state, [name]: value });
+};
 
 export const fadeOut = (el) => {
   let op = 1;
@@ -28,27 +37,27 @@ export const getCourses = async () => {
     const jsonRes = await res.json();
     return jsonRes.data;
   } catch (err) {
-    console.error(err);
     Swal.fire(
       "Fetching Error",
       "Can't currently get the courses data. Please try again later.",
       "error"
     );
+    return [];
   }
 };
 
+const getForms = () => {
+  const form = document.querySelector(".form");
+  const overlay = document.querySelector(".form-overlay");
+  return [form, overlay]
+}
+
 export const showForm = () => {
-  const overlay = document.querySelector(".form-overlay")
-  const form = document.querySelector("#form")
-  overlay.style.display = "block";
-  form.classList.add("show-form");
+  const FORM = getForms();
+  FORM.forEach(el => el?.classList.add("show"));
 };
 
 export const closeForm = () => {
-  const overlay = document.querySelector(".form-overlay")
-  const form = document.querySelector("#form")
-  fadeOut(form)
-  fadeOut(overlay)
-}
-
-export const CoursesCtx = createContext();
+  const FORM = getForms();
+  FORM.forEach(el => el?.classList.remove("show"));
+};

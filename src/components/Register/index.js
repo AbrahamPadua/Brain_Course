@@ -17,28 +17,71 @@ const Register = () => {
 };
 
 const validate = (user) => {
-  // EMPTY FIELD VALIDATION
-  for (let [prop, val] of Object.entries(user)) {
-    if (!val) {
-      Swal.fire("Empty Field", `${prop} is empty. Please fill all the fields`, "error")
-      return false;
+  try {
+    // EMPTY FIELD VALIDATION
+    for (let [prop, val] of Object.entries(user)) {
+      if (!val) {
+        const err = Error(`<b>${prop}</b> is empty.<br/>Please fill all the required inputs.`)
+        err.title = `Empty Field`
+        throw err
+      }
     }
-  }
 
-  // PASSWORD VALIDATION
-  let pattern = /^(?=.{8,15})(?=.*[\w])(?=.*[^\w]).*$/gi;
-    if (pattern.test(user.password)) {
+    // PASSWORD VALIDATION
+    let pattern = /^(?=.{6,})(?=.*[\w])(?=.*[^\w]).*$/gi;
+    if (user.password !== user.verifyPassword) {
+      const err = Error(`Please make sure the password you have entered are the same.`)
+      err.title = `Invalid Password`
+      throw err
+    } else if (pattern.test(user.password)) {
       return true;
     } else {
-      throw {
-        title: `Invalid Password`,
-        text: `Please make sure the your password has at least 1 special character and at least 8 characters up to 15 characters.`,
-      };
+      const err = Error(`Please make sure the your password has at least 1 special character and at least 6 characters.`)
+      err.title = `Invalid Password`
+      throw err
     }
+
+  } catch (err) {
+    Swal.fire(err.title, err.message, "error")
+    console.log(process.env.PUBLIC_URL);
+    return false;
+  }
 }
 
 const register = async (user) => {
+  // VALIDATION
+  if (!validate(user)) return;
 
+  try {
+    const res = await fetch(
+      `https://course-booking-server.herokuapp.com/api/users/register`,
+      {
+        method: `POST`,
+        headers: {
+          'Content-Type': `application/json`,
+        },
+        body: JSON.stringify(user),
+      }
+    );
+
+    if (res.status < 300) {
+      Swal.fire({
+        icon: `success`,
+        text: `Registered Successfully`,
+      });
+
+      // window.location.assign("")
+      return;
+    }
+
+    const err = new Error("Please Try Again")
+    err.title = "Email Already Taken"
+    throw err;
+
+  } catch (err) {
+    Swal.fire(err.title, err.message, "error")
+    return;
+  }
 }
 
 export default Register;

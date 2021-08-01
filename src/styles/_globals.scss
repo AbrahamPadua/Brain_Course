@@ -9,7 +9,16 @@ body {
 }
 
 footer {
+  // SPACES
+  padding: 1rem;
+  margin: 0;
+  // STYLING
+  background-color: #024;
+  color: #fff;
+
   p {
-    text-align: end !important;
+    text-align: center;
+    font-size: 1.1rem;
+    margin: 0;
   }
 }

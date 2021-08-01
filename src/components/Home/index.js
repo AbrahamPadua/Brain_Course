@@ -1,4 +1,4 @@
-import { Header, Footer, Video, Description, Instructors } from "./HomeElems"
+import { Header, Video, Description, Instructors } from "./HomeElems"
 
 const Home = () => {
   return (
@@ -9,7 +9,6 @@ const Home = () => {
       </main>
       <Description />
       <Instructors />
-      <Footer />
     </>
   );
 };

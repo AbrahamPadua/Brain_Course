@@ -22,8 +22,8 @@
     @include flex-center;
     justify-content: space-between;
     padding: 4vw;
-    background: white;
-    color: black;
+    background: $W;
+    color: $B;
     width: 100%;
     height: 80%;
 
@@ -59,8 +59,8 @@
     flex-flow: column nowrap;
     position: relative;
     top: -200px;
-    background: white;
-    color: black;
+    background: $W;
+    color: $B;
     padding: 30px 45px;
     border-radius: 10%;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
@@ -108,18 +108,16 @@
   }
 }
 
-#coursesMain {
-  @include flex-center;
-  justify-content: flex-start;
-  align-items: flex-start;
+#courses-main {
+  @include flex-start;
   margin: 6vw 2vw;
   margin-top: 8vw;
 
   #categories {
     @include flex-center;
-    height: 100vh;
-    flex-flow: column nowrap;
     justify-content: flex-start;
+    flex-flow: column nowrap;
+    height: 100vh;
     border-right: 1px solid black;
     padding-top: 5vh;
     padding-right: 2.5vw;
@@ -130,56 +128,50 @@
   }
 
   section#courses-container {
-    @include flex-center;
+    // POSITIONING
+    @include flex-start;
     flex-flow: column nowrap;
+    // DIMENSION / SPACES
     width: 100%;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-bottom: 6vh;
     padding: 2vw;
+    margin-bottom: 6vh;
 
-    .courses-inner-container {
-      .course-card {
+    .courses-inner-container > .course-card {
+      // POS
+      @include flex-center;
+      // SPACES
+      margin: 5px;
+      padding: 5px;
+      // STYLING
+      border-bottom: 1px solid black;
+      border-radius: 2px;
+
+      .card-img-top {
+        @include square(200px);
+        border-radius: 20px;
+      }
+
+      .card-body {
         @include flex-center;
-        margin: 5px;
-        padding: 5px;
-        border-bottom: 1px solid black;
-        border-radius: 2px;
 
-        .card-img-top {
-          width: 200px;
-          height: 200px;
-          border-radius: 20px;
+        .card-title {
+          font-size: 1.75rem;
         }
 
-        .card-body {
+        .buttons {
           @include flex-center;
+          flex-flow: column nowrap;
 
-          .card-texts {
-            @include flex-center;
-            flex-flow: column nowrap;
-          }
-
-          .buttons {
-            @include flex-center;
-            flex-flow: column nowrap;
-
-            a {
-              width: 130px;
-              margin: 2px;
-            }
+          a {
+            width: 130px;
+            margin: 2px;
           }
         }
       }
     }
 
-    #active-courses {
-    }
-
-    #archived-courses {
-      .course-card {
-        background: #ffc9c9;
-      }
+    #archived-courses > .course-card {
+      background: #ffc9c9;
     }
 
     .add-btn {
@@ -200,15 +192,15 @@
   h2 {
     font-family: $perpetua;
     font-size: 3rem;
-    border-bottom: 2px solid #fd96b5;
+    border-bottom: 2px solid $C2;
   }
 
   form {
+    width: 50%;
+    padding: 20px;
     background: rgba(43, 5, 18, 0.034);
     box-shadow: 10px 10px 5px 0px rgba(216, 216, 216, 0.75);
     border-radius: 10px;
-    padding: 20px;
-    width: 50%;
 
     input,
     textarea {
@@ -216,7 +208,7 @@
     }
 
     button {
-      background: #fd96b5;
+      background: $C2;
     }
   }
 }

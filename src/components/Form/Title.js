@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { closeForm } from "../../helper";
+
 
 const Title = ({ title }) => {
   return (
     <div className="form-title">
       <h2>{title}</h2>
-      <FontAwesomeIcon icon={faTimesCircle} />
+      <FontAwesomeIcon icon={faTimes} onClick={closeForm} />
     </div>
   );
 };

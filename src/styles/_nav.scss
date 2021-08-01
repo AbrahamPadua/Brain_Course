@@ -1,12 +1,14 @@
 #main-nav {
+  background: #024;
   flex-flow: row nowrap;
-  &.transparent {
-    background: transparent;
-  }
   transition: background 0.2s linear;
   padding: 12px 20px;
 
-  > a > img {
+  &.home {
+    background: transparent;
+  }
+
+  a > img {
     width: 120px;
     height: auto;
   }
@@ -58,6 +60,11 @@
         right: 35px;
         font-size: 1.3rem;
         cursor: pointer;
+        opacity: 0;
+
+        &.show {
+          opacity: 1;
+        }
       }
     }
 
