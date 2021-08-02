@@ -46,6 +46,21 @@ export const getCourses = async () => {
   }
 };
 
+export const getInstructors = async () => {
+  try {
+    const res = await fetch(`${API}/instructors`);
+    const jsonRes = await res.json();
+    return jsonRes;
+  } catch (err) {
+    Swal.fire(
+      "Fetching Error",
+      "Can't currently get necessary data. Please try again later.",
+      "error"
+    );
+    return [];
+  }
+};
+
 const getForms = () => {
   const form = document.querySelector(".form");
   const overlay = document.querySelector(".form-overlay");

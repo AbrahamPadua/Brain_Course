@@ -1,4 +1,5 @@
 export { default as Courses } from "./Courses";
+export { default as Course } from "./Course";
 export { default as NavBar } from "./NavBar";
 export { default as Home } from "./Home";
 export { default as Login } from "./Login";
