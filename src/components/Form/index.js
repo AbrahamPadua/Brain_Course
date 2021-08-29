@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // FUNCTIONS
 import { FormCtx, handleInput } from "../../helper";
 // COMPONENTS

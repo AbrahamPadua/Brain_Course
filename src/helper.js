@@ -1,17 +1,16 @@
 import { createContext } from "react";
 import Swal from "sweetalert2";
 
+// VARIABLES
 export const API = process.env.REACT_APP_API + "/api";
 
 // CONTEXTS
-
 export const FormCtx = createContext();
 export const CoursesCtx = createContext();
 export const UserCtx = createContext();
 
 
 // FUNCTIONS
-
 export const handleInput = (e, state, set) => {
   const { name, value } = e.target;
   set({ ...state, [name]: value });
@@ -33,7 +32,7 @@ export const fadeOut = (el) => {
 
 export const getCourses = async () => {
   try {
-    const res = await fetch(`${API}/courses`);
+    const res = await fetch(`https://${API}/courses`);
     const jsonRes = await res.json();
     return jsonRes.data;
   } catch (err) {
@@ -48,7 +47,7 @@ export const getCourses = async () => {
 
 export const getInstructors = async () => {
   try {
-    const res = await fetch(`${API}/instructors`);
+    const res = await fetch(`https://${API}/instructors`);
     const jsonRes = await res.json();
     return jsonRes;
   } catch (err) {

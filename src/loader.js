@@ -1,6 +1,5 @@
 const loader = (canvas) => {
   // let canvas = document.querySelector('#canvas');
-  console.log(canvas)
   let ctx = canvas.getContext('2d');
 
   // const colors = ["#82FFEB", "#549FCC", "#116699", "#FFCAC2", "#CC5456"];

@@ -1,44 +1,39 @@
 import { useContext, useEffect, useState } from "react";
 import { CoursesCtx, UserCtx } from "../../helper";
-import { Card, CardImg } from "react-bootstrap"
+import { Card, Spinner } from "react-bootstrap";
 
 const Courses = () => {
   const { courses } = useContext(CoursesCtx);
-  const { categories, setCategories } = useState("");
+  const { categories, setCategories } = useState(["Neuroscience"]);
 
   useEffect(() => {
-    console.log(courses);
-  }, []);
+    if (!categories) {
+      setCategories([]);
+    }
+  }, [categories, setCategories]);
 
   return (
     <main id="courses-main">
-
       <aside id="categories">
         <h1>All Courses</h1>
         <ul>
-          <li>
-            <a href="./courses?category=neuroscience">Neuroscience</a>
-          </li>
+          {categories.map((C) => (
+            <li>
+              <a href={`./courses?category=${C.toLowerCase()}`}>{C}</a>
+            </li>
+          ))}
         </ul>
       </aside>
 
       <section id="courses-container" className="d-flex flex-wrap">
         <div id="active-courses" className="courses-inner-container">
+          {courses.length ? (
+            <></>
+          ) : (
+            <Spinner animation="border" >&#9;Fetching Courses</Spinner>
+          )}
 
-          {courses.length ?
-            <></> :
-            <div id="coursesSpinner" className="spinner-border" role="status">
-              <span className="sr-only">
-                &nbsp;&nbsp;&nbsp;Fetching Couress
-              </span>
-            </div>
-          }
-
-          {courses.length
-            ? courses.map((C) => <Course key={C._id} {...C} />)
-            : <></>
-          }
-
+          {courses?.map?.(C => <Course key={C._id} {...C} />)}
         </div>
         <div id="archived-courses" className="courses-inner-container"></div>
       </section>
@@ -47,9 +42,8 @@ const Courses = () => {
 };
 
 const Course = (C) => {
-  const { user, setUser } = useContext(UserCtx);
-  useEffect(() => { }, []);
-
+  const { user } = useContext(UserCtx);
+  
   return (
     <>
       <div id={`${C.name.replace(" ", "")}`} className="course-card">
@@ -57,13 +51,13 @@ const Course = (C) => {
           className="card-img-top"
           style={{
             background: `url(${C.image}) no-repeat center`,
-            backgroundSize: `100%`
+            backgroundSize: `100%`,
           }}
           alt="Card image"
         ></div>
         <Card.Body>
           <div className="course-texts">
-            <Card.Title >{C.name}</Card.Title>
+            <Card.Title>{C.name}</Card.Title>
             <Card.Text>
               {C.description.length < 200
                 ? C.description
@@ -75,18 +69,21 @@ const Course = (C) => {
             <a href={`../course/?id=${C._id}`} className="btn btn-primary">
               Details
             </a>
-            {
-              user?.isAdmin
-                ? <>
-                  <a href={`../editCourse/?id=${C._id}`} className="btn btn-warning">
-                    Edit
-                  </a>
-                  <a href={`archive${C._id}`} className="btn btn-danger">
-                    Archive
-                  </a>
-                </>
-                : <></>
-            }
+            {user?.isAdmin ? (
+              <>
+                <a
+                  href={`../editCourse/?id=${C._id}`}
+                  className="btn btn-warning"
+                >
+                  Edit
+                </a>
+                <a href={`archive${C._id}`} className="btn btn-danger">
+                  Archive
+                </a>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </Card.Body>
       </div>
