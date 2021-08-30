@@ -32,7 +32,7 @@ export const fadeOut = (el) => {
 
 export const getCourses = async () => {
   try {
-    const res = await fetch(`https://${API}/courses`);
+    const res = await fetch(`${API}/courses`);
     const jsonRes = await res.json();
     return jsonRes.data;
   } catch (err) {
@@ -47,7 +47,7 @@ export const getCourses = async () => {
 
 export const getInstructors = async () => {
   try {
-    const res = await fetch(`https://${API}/instructors`);
+    const res = await fetch(`${API}/instructors`);
     const jsonRes = await res.json();
     return jsonRes;
   } catch (err) {

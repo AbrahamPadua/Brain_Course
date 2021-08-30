@@ -4,7 +4,7 @@ import { Card, Spinner } from "react-bootstrap";
 
 const Courses = () => {
   const { courses } = useContext(CoursesCtx);
-  const { categories, setCategories } = useState(["Neuroscience"]);
+  const [categories, setCategories] = useState(["Neuroscience"]);
 
   useEffect(() => {
     if (!categories) {
@@ -30,10 +30,12 @@ const Courses = () => {
           {courses.length ? (
             <></>
           ) : (
-            <Spinner animation="border" >&#9;Fetching Courses</Spinner>
+            <Spinner animation="border">&#9;Fetching Courses</Spinner>
           )}
 
-          {courses?.map?.(C => <Course key={C._id} {...C} />)}
+          {courses?.map?.((C) => (
+            <Course key={C._id} {...C} />
+          ))}
         </div>
         <div id="archived-courses" className="courses-inner-container"></div>
       </section>
@@ -43,7 +45,7 @@ const Courses = () => {
 
 const Course = (C) => {
   const { user } = useContext(UserCtx);
-  
+
   return (
     <>
       <div id={`${C.name.replace(" ", "")}`} className="course-card">
@@ -69,7 +71,7 @@ const Course = (C) => {
             <a href={`../course/?id=${C._id}`} className="btn btn-primary">
               Details
             </a>
-            {user?.isAdmin ? (
+            {!user?.isAdmin ?? (
               <>
                 <a
                   href={`../editCourse/?id=${C._id}`}
@@ -81,8 +83,6 @@ const Course = (C) => {
                   Archive
                 </a>
               </>
-            ) : (
-              <></>
             )}
           </div>
         </Card.Body>
