@@ -7,6 +7,7 @@ const Footer = () => {
       <p>
         Brain course | Zuitt Coding Bootcamp &copy; {YEAR}
       </p>
+      <span>By: Abraham Padua</span>
     </footer>
   )
 }
