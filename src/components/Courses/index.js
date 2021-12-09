@@ -4,7 +4,7 @@ import { Card, Spinner } from "react-bootstrap";
 
 const Courses = () => {
   const { courses } = useContext(CoursesCtx);
-  const [categories, setCategories] = useState(["Neuroscience"]);
+  const [categories, setCategories] = useState(["Neuroscience", "Psychology", "Physics"]);
 
   useEffect(() => {
     if (!categories) {
