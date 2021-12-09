@@ -25,7 +25,7 @@ const NavBar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
-  }, []);
+  }, [location.pathname]);
 
   return (
     <Navbar id="main-nav" className={location.pathname === "/" ? "home" : ""}>
